@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Encuéntrame</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/fonts/glyphicons-halflings-regular.svg">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="row form-inline">
+      <div class="col-sm-5">
+        <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+        <input type="text" class="form-control" placeholder="Ingresa tu destino">
+      </div>
+    </form>
+    <form class="form-inline">
+      <div class="col-sm-5">
+        <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+        <input type="text" class="form-control" placeholder="Ingresa tu destino">
+      </div>
+    </form>
+    <form class="form-inline">
+    <div class="col-sm-2">
+        |
+        <button id="encuentrame" type="button" class="btn btn-default navbar-btn">Encuéntrame</button>
+      </div>
+    </div>
+  </form>
+</nav>
+  <div class="row">
+    <div id="map">
+    </div>
+  </div>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA05L4Ug_tHaRuPX0ViQJaGKfnXFUZK0gs&callback=initMap"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
