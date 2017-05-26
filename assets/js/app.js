@@ -16,16 +16,16 @@ function initMap(){
       }
     }
     //FUNCIÓN ÉXITO
-    var latitud, longitud;
+    var latitud, longitud, miUbicacion;
     var funcionExito = function(posicion){
       latitud = posicion.coords.latitude;
       longitud = posicion.coords.longitude;
-      var miUbicacion = new google.maps.Marker({
+      miUbicacion = new google.maps.Marker({
         position: {lat:latitud, lng: longitud},
         map: map
       });
       map.setZoom(18);
-      map.setCenter({lat:latitud, lng:longitud});
+      map.setCenter({lat: latitud, lng: longitud});
     }
 
     //FUNCIÓN ERROR
@@ -39,19 +39,19 @@ function initMap(){
     var inputPartida = document.getElementById("punto-partida");
     var inputDestino = document.getElementById("punto-destino");
 
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer;
-
     new google.maps.places.Autocomplete(inputPartida);
     new google.maps.places.Autocomplete(inputDestino);
+
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
 
     var calculateAndDisplayRoute = function(directionsService, directionsDisplay){
       directionsService.route({
         origin: inputPartida.value,
         destination: inputDestino.value,
-        travelMode: "DRIVING",
+        travelMode: 'DRIVING',
       }, function(response, status) {
-        if (status === "OK"){
+          if (status === 'OK'){
           var distancia = Number((response.routes[0].legs[0].distance.text.replace("km","")).replace(",","."));
           tarifa.classList.remove("none");
 
@@ -60,13 +60,14 @@ function initMap(){
               tarifa.innerHTML = "S/. 4";
           }
           tarifa.innerHTML = "S/. " + parseInt(costo);
-          console.log(response.routes[0].legs[0].distance.text);
           directionsDisplay.setDirections(response);
+          miUbicacion.setMap(null);
+          markadorLaboratoria.setMap(null);
         } else {
           window.alert("No encontramos una ruta.");
         }
-      });
-    }
+    });
+  }
     directionsDisplay.setMap(map);
     var trazarRuta = function(){
       calculateAndDisplayRoute(directionsService, directionsDisplay);
