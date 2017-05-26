@@ -2,7 +2,7 @@
 function initMap(){
     var laboratoriaLima = {lat: -12.1191427, lng: -77.0349046};
     var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 18,
+      zoom: 7,
       center: laboratoriaLima
     });
     var markadorLaboratoria = new google.maps.Marker({
@@ -39,6 +39,9 @@ function initMap(){
     var inputPartida = document.getElementById("punto-partida");
     var inputDestino = document.getElementById("punto-destino");
 
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
+
     new google.maps.places.Autocomplete(inputPartida);
     new google.maps.places.Autocomplete(inputDestino);
 
@@ -46,8 +49,8 @@ function initMap(){
       directionsService.route({
         origin: inputPartida.value,
         destination: inputDestino.value,
-        travelMode: "DRIVING"
-      },function(response, status) {
+        travelMode: "DRIVING",
+      }, function(response, status) {
         if (status === "OK"){
           var distancia = Number((response.routes[0].legs[0].distance.text.replace("km","")).replace(",","."));
           tarifa.classList.remove("none");
@@ -63,11 +66,10 @@ function initMap(){
           window.alert("No encontramos una ruta.");
         }
       });
-
-      directionsDisplay.setMap(map);
-      var trazarRuta = function(){
-        calculateAndDisplayRoute(directionsService, directionsDisplay);
-      };
-      document.getElementById("trazar-ruta").addEventListener("click",trazarRuta);
     }
+    directionsDisplay.setMap(map);
+    var trazarRuta = function(){
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
+    };
+    document.getElementById("trazar-ruta").addEventListener("click",trazarRuta);
 }
