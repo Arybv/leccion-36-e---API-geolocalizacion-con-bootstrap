@@ -9,30 +9,31 @@
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/fonts/glyphicons-halflings-regular.svg">
 </head>
-<body>
-  <nav class="navbar">
-    <div class="row form-inline">
-      <div class="col-sm-4">
-        <span class="glyphicon glyphicon-record" aria-hidden="true"></span>
-        <input type="text" class="form-control" placeholder="Ingresa punto de partida">
+  <body>
+    <nav class="navbar">
+      <div class="row form-inline">
+        <div class="col-sm-4">
+          <span class="glyphicon glyphicon-record" aria-hidden="true"></span>
+          <input id="punto-partida" type="text" class="form-control" placeholder="Ingresa punto de partida">
+        </div>
+        <div class="col-sm-4">
+          <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+          <input id="punto-destino" type="text" class="form-control" placeholder="Ingresa tu destino">
+        </div>
+        <div class="col-sm-2">
+            <button id="trazar-ruta" class="btn btn-default navbar-btn">Trazar ruta</button>
+        </div>
+        <div class="col-sm-2">
+            <button id="encuentrame" class="btn btn-default navbar-btn">Encuéntrame</button>
+        </div>
       </div>
-      <div class="col-sm-4">
-        <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
-        <input type="text" class="form-control" placeholder="Ingresa tu destino">
+   </nav>
+   <div class="row">
+      <div id="map">
       </div>
-    <div class="col-sm-2">
-        <button id="ruta" type="button" class="btn btn-default navbar-btn">Trazar ruta</button>
-    </div>
-    <div class="col-sm-2">
-        <button id="encuentrame" type="button" class="btn btn-default navbar-btn">Encuéntrame</button>
-    </div>
-    </div>
-</nav>
-  <div class="row">
-    <div id="map">
-    </div>
-  </div>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA05L4Ug_tHaRuPX0ViQJaGKfnXFUZK0gs&callback=initMap&libraries=places"></script>
-  <script src="assets/js/app.js"></script>
-</body>
+   </div>
+   <div class="tarifa"></div>
+   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA05L4Ug_tHaRuPX0ViQJaGKfnXFUZK0gs&callback=initMap&libraries=places"></script>
+   <script src="assets/js/app.js"></script>
+  </body>
 </html>
