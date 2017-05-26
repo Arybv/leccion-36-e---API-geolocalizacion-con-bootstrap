@@ -42,8 +42,6 @@ function initMap(){
     new google.maps.places.Autocomplete(inputPartida);
     new google.maps.places.Autocomplete(inputDestino);
 
-
-
     var calculateAndDisplayRoute = function(directionsService, directionsDisplay){
       directionsService.route({
         origin: inputPartida.value,
@@ -51,11 +49,25 @@ function initMap(){
         travelMode: "DRIVING"
       },function(response, status) {
         if (status === "OK"){
-          var distancia = Number((response.routes[0].legs[0].))
+          var distancia = Number((response.routes[0].legs[0].distance.text.replace("km","")).replace(",","."));
+          tarifa.classList.remove("none");
+
+          var costo = distancia*1.75;
+          if(costo < 4){
+              tarifa.innerHTML = "S/. 4";
+          }
+          tarifa.innerHTML = "S/. " + parseInt(costo);
+          console.log(response.routes[0].legs[0].distance.text);
           directionsDisplay.setDirections(response);
         } else {
           window.alert("No encontramos una ruta.");
         }
       });
+
+      directionsDisplay.setMap(map);
+      var trazarRuta = function(){
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+      };
+      document.getElementById("trazar-ruta").addEventListener("click",trazarRuta);
     }
 }
